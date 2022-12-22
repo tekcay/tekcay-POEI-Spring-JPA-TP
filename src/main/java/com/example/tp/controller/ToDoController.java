@@ -26,7 +26,6 @@ public class ToDoController {
         if (toDoToModify == null) return null;
 
         toDoToModify.setDate(toDo.getDate());
-        toDoToModify.setId(toDo.getId());
         toDoToModify.setDescription(toDo.getDescription());
         toDoToModify.setDone(toDo.isDone());
         toDoToModify.setTitle(toDo.getTitle());
