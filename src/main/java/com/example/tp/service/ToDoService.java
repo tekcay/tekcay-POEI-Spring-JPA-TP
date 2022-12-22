@@ -23,32 +23,36 @@ public class ToDoService implements IDAO<ToDo> {
 
     @Override
     public boolean add(ToDo o) {
-        return false;
+        session.beginTransaction();
+        session.persist(o);
+        session.getTransaction().commit();
+        return true;
     }
 
     @Override
     public boolean modify(ToDo o) {
-        return false;
+        session.beginTransaction();
+        session.update(o);
+        session.getTransaction().commit();
+        return true;
     }
 
     @Override
     public boolean remove(ToDo o) {
-        return false;
-    }
-
-    public boolean changeIsDone(ToDo o) {
-        return false;
+        session.beginTransaction();
+        session.remove(o);
+        session.getTransaction().commit();
+        return true;
     }
 
     /**
      * @param isDone
      * @return all the {@code ToDo}s whether they are {@code done} or not
      */
-    /*
     public List<ToDo> getToDos(boolean isDone) {
-        return
+        return session.createQuery("SELECT p FROM todo WHERE p.isDone = " + isDone, ToDo.class).getResultList();
     }
-    */
+
 
 
 }
