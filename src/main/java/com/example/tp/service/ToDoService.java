@@ -22,17 +22,9 @@ public class ToDoService implements IDAO<ToDo> {
 
 
     @Override
-    public boolean create(ToDo o) {
-        session.beginTransaction();
-        session.save(o);
-        session.getTransaction().commit();
-        return true;
-    }
-
-    @Override
     public boolean add(ToDo o) {
         session.beginTransaction();
-        session.persist(o);
+        session.save(o);
         session.getTransaction().commit();
         return true;
     }
@@ -51,6 +43,11 @@ public class ToDoService implements IDAO<ToDo> {
         session.remove(o);
         session.getTransaction().commit();
         return true;
+    }
+
+    @Override
+    public ToDo findById(int id) {
+        return session.find(ToDo.class, id);
     }
 
     /**
