@@ -55,7 +55,7 @@ public class ToDoService implements IDAO<ToDo> {
      * @return all the {@code ToDo}s whether they are {@code done} or not
      */
     public List<ToDo> getToDos(boolean isDone) {
-        return session.createQuery("SELECT p FROM todo WHERE p.isDone = " + isDone, ToDo.class).getResultList();
+        return session.createQuery(String.format("SELECT p FROM ToDo p WHERE %s isDone", isDone ? "" : "NOT"), ToDo.class).getResultList();
     }
 
 

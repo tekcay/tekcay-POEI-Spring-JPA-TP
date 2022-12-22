@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/todo")
 @ResponseBody
@@ -42,6 +44,13 @@ public class ToDoController {
         toDoToModify.setDone(toDo.isDone());
 
         if (toDoService.modify(toDoToModify)) return toDoToModify;
+        return null;
+    }
+
+    @PostMapping("get-all/{isDone}")
+    public List<ToDo> getAllByIsDone(@PathVariable("isDone") String isDone) {
+        if (isDone.equals("true")) return toDoService.getToDos(true);
+        if (isDone.equals("false")) return toDoService.getToDos(false);
         return null;
     }
 
